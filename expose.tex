@@ -1,0 +1,437 @@
+%
+% Vorlage
+%
+% Stefan Taber <stefan.taber@inso.tuwien.ac.at>
+%
+\documentclass[a4paper,10pt,german,public]{INSOexpose}
+\inputencoding{utf8} % linux, mac
+
+\title{
+	\langchooser{
+		Identification of Influencing Variables on the Utility of Open Government Data
+	}{
+		Studie über Kriterien für die Nützlichkeit von Open Government Data
+	}
+}
+% Bitte setzen falls der Titel zu lang ist
+\shorttitle{Kriterien für die Nützlichkeit von Open Government Data}
+\author{Helmuth Breitenfellner}
+\matrikelnr{08725866}
+\kennzahl{066 645}
+\studium{Data Science}
+% \gdef\@assistent	{Vorname Nachname}
+\betreuer{Karl Pinter}
+\date{10. November 2019}
+\dokumenttyp{%
+	\langchooser{Project Work}{Projektvorschlag}
+}
+\assistent{}
+
+% Bibliographie file
+\bibliography{db}
+
+\begin{document}
+\maketitle
+
+%=======================================================================
+\section{\langchooser{Problem Description}{Problemstellung}}
+%=======================================================================
+
+\subsection{Allgemeine Problemstellung}
+
+% Allgemeine Problemstellung: Formulierung der konkreten Problemstellung in wenigen Sätzen. Welchem Themenbereich ist die Arbeit zuzuordnen? Wie erfolgt die Themenabgrenzung? 1-2 Absätze, max. 0,5 Seiten.
+
+Open Government Data ist eine Spezialisierung der
+Open Data Initiative.
+Durch die Platform \texttt{data.gov} in den USA, die das Ziel verfolgt, Verwaltungsdaten frei verfügbar zu machen, hat diese Initiative viel
+an Bekanntheit gewonnen.
+
+Einige Studien haben versucht die Qualität von Open Government Data, deren Metadaten sowie von Datenplattformen zu messen. Als Beispiele seien hier 
+\cite{VETRO2016325},
+\cite{neumaier:2015:thesis},
+\cite{KCN13},
+\cite{BETL12}, \cite{RHS14}, \cite{web-data}, \cite{saxena_stuti_proposing_2019}, \cite{fulltext} und \cite{inproceedings} genannt.
+
+Diese Studien nutzen Qualitätskritieren zur Charakterisierung der Qualität von Metadaten und Daten, wie z.B.\ \emph{Accuracy}, \emph{Completeness}, \emph{Consistency}, \emph{Timeliness}, \emph{Retrievability}
+und \emph{Openness} \cite{WANG2019101405}.
+
+Diese gewählten Qualitätskriterien sind augenscheinlich sinnvoll und hilfreich.
+Untersuchungen der tatsächlichen \emph{Nützlichkeit} dieser
+Qualitätskriterien und inwieweit sie zu einer
+besseren Nutzbarkeit der Daten beitragen fehlen jedoch.
+Ganz besonders fehlen Studien, die die Bedeutung
+der Qualitätskritieren vergleichen und gewichten würden.
+
+Diese Lücke soll mit dieser Studie geschlossen werden. Die Qualitätskriterien werden auf den Einfluss, den diese auf die
+Nützlichkeit der Daten für \emph{Data Scientists} haben, hin
+untersucht und gewichtet.
+
+Als \emph{Data Scientists} sind hier alle Berufsgruppen gemeint,
+deren Arbeit in der Analyse und Auswertung von Daten besteht.
+Dies umfasst sowohl Wissenschafter im engeren Sinn, die Arbeiten
+publizieren, als auch Forscher, Entwickler und Analytiker
+im industriellen Umfeld.
+
+Als Resultat der Studie können Datenportale als auch Anbieter von Daten die Schritte setzen, die für eine maximale Nützlichkeit notwendig sind.
+
+\subsection{Spezifische Problemstellung}
+
+% Spezifische Problemstellung: Welche konkrete Problemstellung oder welches Forschungsziel (innerhalb des oben beschriebenen Themengebiets) adressiert die vorgeschlagene Arbeit? Begründung der Relevanz der Problemstellung (warum und für wen ist die Problemstellung wichtig?). Was sind die Herausforderungen bei der Problemstellung? Woraus resultiert ggf. Komplexität? Welche Spezifika hat der Anwendungsbereich (bspw. die Charakteristiken der Benutzern, ihrer Aufgaben, und des Nutzungkontexts)? Welche Spezifika hat die eingesetzte Technologie (bspw. Web, Mobile, Echtzeit, usw?). Ca. 1/2 Seite.
+
+Die tatsächliche Nützlichkeit von Daten hängt nicht nur von der Qualität der
+Daten oder Metadaten ab.
+Die Daten müssen einer konkreten Problemstellung dienen, und die Art der
+Daten kann die Eignung für eine Problemstellung beeinflussen.
+
+Ebenso hat die Erfahrung des Data Scientist Einfluss auf die Nützlichkeit von
+Daten für einen Anwendungsfall.
+
+Daher wird folgendes Fallbeispiel untersucht: 
+Es werden \emph{Daten zum Familienstand}
+von Einwohnern eines Landes betrachtet.
+Verglichen werden Datenportale und Daten von verschiedenen Ländern.
+Der \emph{Einsatzbereich} der Daten ist eine Analyse des Familienstands
+und möglicher korrelierender Faktoren.
+Die \emph{Data Scientists} sind erfahrene Statistiker im Bereich der Bevölkerungsanalyse.
+
+Durch die Wahl eines speziellen Szenarios - personenbezogene Daten über Familienstand
+- werden die Verallgemeinerbarkeit des Resultats beeinträchtigt.
+Die Bedeutung der Qualitätskriterien kann bei anderen Anwendungen,
+z.B.\ Echtzeit-Anwendungen,
+deutlich anders aussehen.
+Es wird daher empfohlen, entsprechend weitere Studien mit anderen Fallbeispielen
+durchzuführen.
+Die Varianz in der Bedeutung der Qualitätskriterien in mehreren solchen Studien lässt
+dann Rückschluss auf die Verallgemeinerung zu.
+
+Doch auch in einer Studie kann über statistische Tests die Signifikanz
+der Ergebnisse zumindest für das Fallbeispiel abgesichert werden.
+
+\section{Erwartetes Resultat}
+
+% Was für ein Ergebnis wird von der vorgeschlagenen Arbeit erwartet bzw. angestrebt? In welche Unterpunkte gliedert sich das Ergebnis? Von welcher Art ist das Ergebnis (bspw. qualitative oder quantitative Ergebnisse aus einer empirischen Studie, Entwicklung eines Designs, Explorieren möglicher Designs, Entwickeln einer Mess-Skala, Entwickeln oder Überprüfen einer Theorie, ...). Welche Hypothesen / Theorien werden unterstützt / widerlegt / verfeinert? Inwiefern wird durch das erwartete Ergebnis die spezifische Problemstellung gelöst? Für wen und warum wäre das Ergebnis nützlich und relevant (bspw: Für Anwender, für Designer, für HCI Forschung, ...?). Was für Schlüsse müssten aus einem negativen oder nicht aussagekräftigen Ergebnis gezogen werden? Ca. 1/2 Seite.
+
+Der Fokus der Studie liegt in der Evaluierung etablierter
+Qualitätskriterien für die Nützlichkeit der Daten in dem Fallbeispiel.
+Es werden quantitative Aussagen über die Korrelation dieser
+Qualitätskriterien auf die subjektive Nützlichkeit angestrebt.
+
+Die erwarteten Ergebnisse sind numerische Gewichte, die existierende
+Maßzahlen von Qualitätskriterien (z.B. \cite{VETRO2016325}) bezüglich
+der Nützlichkeit für Data Scientists in Verbindung bringen.
+Mit Hilfe solcher Gewichte ist ein zielgerichtetes Vorgehen bei der
+Unterstützung und Implementierung von Qualitätskriterien in Datensätzen
+und Datenportalen erst möglich.
+
+Datenportale für Open Government Data könnten z.B. die Qualitätskriterien,
+die sich als nützlichst erweisen, in einem Qualitätsranking messen und
+damit einen Anreiz für Datenprovider liefern, die wesentlichen
+Qualitätskriterien bevorzugt zu erfüllen.
+Aber auch die Provider von Open Government Data können selbst ihren
+Fokus auf die wesentlichsten Qualitätskriterien legen und damit
+die Nützlichkeit ihrer Daten kostengünstig optimieren.
+
+Ein negatives oder nicht aussagekräftiges Ergebnis würde die Rolle
+der bisher meist genutzten Qualitätskriterien für die Nützlichkeit
+in Frage stellen.
+Daher werden in einer begleitenden Befragung mögliche andere,
+bisher in der Literatur noch nicht entsprechend genannte
+Qualitätskriterien gesucht.
+Diese qualitativen Ergebnisse erlauben die weitere Entwicklung von
+Normen und Standards sowie quantitative Meßmethoden für bisher nicht
+beachtete aber für die Nützlichkeit wesentliche Qualitätskriterien.
+
+\section{Methodisches Vorgehen}
+
+% Eine Schritt-für-Schritt Beschreibung des methodischen Vorgehens, dargestellt als zeitliche Abfolge von einzelnen, methodischen Arbeitsschritten in einem geplanten Ablauf oder Prozess. Formulieren Sie diesen Abschnitt in vollständigen Sätzen (nicht nur Stichworte oder Bullet-Points). Bitte beachten Sie die auch die Hinweise in den Richtlinien zu Abgabe 2. Umfang ca. 2 Seiten.
+% An welchem Prozessmodell (bzw. auch an welchen Prozessmodellen) orientiert sich der vorgeschlagene Ablauf? Referenzieren Sie mit Hilfe von Literaturverweisen Prozessmodelle, die für Ihre Arbeit relevant sind, bzw. die Sie in Ihrer Arbeit verwenden. 
+% Beschreibung der vorgeschlagenen methodischen Schritte, geordnet entsprechend des geplanten Prozesses, d.h. entsprechend der geplanten, zeitlichen Abfolge. Strukturieren Sie Ihren Text mit Hilfe von (Unter-)Überschriften, Absätzen, sowie Bullet- oder nummerierten Listen. 
+% Beschreiben Sie jeden einzelnen, methodischen Schritt: Was für eine konkrete Methode soll zum Einsatz kommen? Z.B. Literaturrecherche, Beobachtung von Benutzer vor Ort, Interviews, Task-Modellierung, Sketching, Wizard-of-Oz’ing, Rapid vs. High-Fidelity Prototyping, Feldstudie, Interviews, formative vs. summative Usability Evaluierung, heuristische Evaluierung vs. Usability Testing, usw. 
+% Überlegen und beschreiben Sie: Welche speziellen Aspekte (z.B. Rahmenbedingungen, Abhängigkeiten von Arbeitsergebnissen anderer methodischer Schritte) sind ggf. bei der Durchführung zu berücksichtigen, und wie planen Sie damit umzugehen?
+% Referenzieren Sie mit Hilfe von Literaturverweisen jene Methoden, die Sie in Ihrer Arbeit verwenden wollen. Begründen Sie die Wahl der jeweils eingesetzten Methode. Nennen Sie den Zweck der eingesetzten Methode (bspw. Recherche, Analysemethoden, Design, Evaluierung).
+
+\subsection{Auswahl von zu untersuchenden Qualitätskriterien}
+
+Durch Literaturrecherche werden die zu untersuchenden Qualitätskriterien
+ausgewählt. Dabei ist wichtig, dass sich nur quantifizierbare
+Meßkriterien eignen, da andernfalls eine numerische Gewichtung
+nicht möglich ist.
+
+Diese Recherche umfasst neben der existierenden wissenschaftlichen
+Literatur über die Qualität von Daten und Metadaten auch die
+Einbeziehung von existierenden Software-Implementierungen
+von Rankings und Ratings (z.B. für CKAN).
+
+Für diesen Schritt ist ein Zeitbereich von einem Monat
+vorgesehen.
+
+\subsection{Auswahl der TeilnehmerInnen und Datensätze}
+
+Es werden 20 Data Scientists als StudienteilnehmerInnen gesucht.
+Diese müssen mindestens 6 Monate Erfahrung im Bereich der
+statistischen Bevölkerungsanalyse aufweisen können.
+
+Diese Data Scientists können z.B. durch Einladung auf Internet-Foren
+rekrutiert werden.
+
+Für die Experimente werden fünf verschiedene nationale Datensätze
+über Familienstand-Statistiken der jeweiligen Länder gesucht.
+Diese Datensätze sollen auf fünf verschiedenen Portalen zu finden sein.
+
+Dann werden jedem Teilnehmer / jeder Teilnehmerin die fünf Datensätze
+in einer unterschiedlichen Reihenfolge zugeordnet.
+Hier wird darauf Wert gelegt, dass jeder Datensatz gleich oft an
+$k$-ter Stelle bei einer der teilnehmenden Personen gereiht ist.
+
+Die Datensätze als auch die Portale werden nach den ausgewählten
+Qualitätskriterien beurteilt. \emph{Diese Beurteilung wird von 
+der Studienleitung durchgeführt - dies an die Teilnehmenden zu
+delegieren würde das Ergebnis verfälschen!}
+
+\subsection{Befragung zu den Portalen}
+
+Die Data Scientists werden eingeladen, auf allen fünf Portalen,
+in der ihnen zugewiesenen Reihenfolge, nach möglichen Daten
+für statistische Studien im Bereich der nationalen
+Bevölkerungsstatistik zu suchen.
+
+Danach werden sie nach ihrem persönlichen Ranking der Portale
+gefragt.
+Dieses Ranking soll nach der subjektiv empfundenen Nützlichkeit der
+Portale für den Zweck der Findung von Datensätzen zu entsprechenden
+Studien im Bereich der Bevölkerungsstatistik durchgeführt werden.
+
+Zusätzlich werden sie nach ihrer vorherigen Erfahrung mit den Portalen
+gefragt. Portale, mit denen der oder die Teilnehmende über- oder
+auch unterdurchschnittlich viel Erfahrung gemacht hat, werden bei der
+statistischen Analyse herausgerechnet - solche vorhergehende
+Erfahrung ist eine Störvariable und würde den Vergleich der
+Portalqualität behindern.
+
+Außerdem werden sie qualitativ zu den Portalen
+befragt. Welche Aspekte haben ihnen gefallen, welche haben sie vermisst?
+Welche Vorschläge zur Verbesserung haben sie?
+
+\subsection{Befragung zu den Metadaten}
+
+Die Data Scientists werden eingeladen, die Metadaten der ausgewählten
+Datensätze zu untersuchen. Auch hier werden die Datensätze in der
+ihnen zugewiesenen Reihenfolge präsentiert.
+Der Hintergrund ist die Nützlichkeit für statistische Studien im
+Bereich der nationalen Bevölkerungsstatistik zu beurteilen.
+
+Anschließend werden sie nach ihrem persönlichen Ranking der Datensätze
+gefragt.
+
+Zusätzlich werden sie nach ihrer vorherigen Erfahrung mit den Datensätzen
+gefragt. Datensätze, mit denen der oder die Teilnehmende über- oder
+auch unterdurchschnittlich viel Erfahrung gemacht hat, werden bei der
+statistischen Analyse herausgerechnet - solche vorhergehende
+Erfahrung ist eine Störvariable und würde den Vergleich der
+Metadatenqualität behindern.
+
+Außerdem werden sie qualitativ zu den Metadaten
+befragt. Welche Aspekte haben ihnen gefallen, welche haben sie vermisst?
+Welche Vorschläge zur Verbesserung haben sie?
+
+\subsection{Durchführung von experimentellen Studien}
+
+Die Data Scientists werden eingeladen, Studien mit Hilfe
+jeweils eines der Datensätze durchzuführen.
+Wieder soll die den Teilnehmenden zugewiesene Datensatz-Reihenfolge
+eingehalten werden.
+
+Hier ist wichtig dass die Data Scientists tatsächlich Studien durchführen,
+einschließlich notwendiger Datenpflege und Vorbereitung.
+
+Die Durchführung solcher experimentellen Studien wird den
+Data Scientists erlauben, die Daten bezüglich ihrer Nützlichkeit
+vollinhaltlich zu beurteilen.
+
+\subsection{Befragung zu den Datensätzen}
+
+Anschließend werden sie nach ihrem persönlichen Ranking der Datensätze
+gefragt.
+
+Außerdem werden sie qualitativ zu den Datensätzen
+befragt. Welche Aspekte haben ihnen gefallen, welche haben sie vermisst?
+Welche Vorschläge zur Verbesserung haben sie?
+ 
+Insgesamt werden für die drei vorigen Schritte der Studie
+ein Zeitraum von zwei Monaten vorgesehen.
+Tatsächlich wird jeder Data Scientist nur für 1-2 Tage tätig sein,
+aber da umfassende Betreuung während des Experiments notwendig
+ist werden die Teilnehmenden auf den oben genannten Zeitbereich
+verteilt.
+
+\subsubsection{Auswertung}
+
+Die quantitativen Daten der Qualitätsmatrizen werden in einem einfachen
+linearen Model zu den Rankings der Teilnehmenden in Beziehung gesetzt.
+Linearkoeffizienten werden ermittelt sowie statistische Konfidenzintervalle
+berechnet.
+
+Die qualitativen Daten werden gesichtet und untersucht, ob sie in
+Einklang mit dem numerischen Ergebnis der Studie stehen.
+Für mögliche Widersprüche werden Erklärungsversuche gesucht.
+
+Für diesen Schritt ist ein Zeitraum von einem Monat vorgesehen.
+
+\section{Studiendesign}
+
+% Zusammenfassung des Studiendesigns: Was soll untersucht werden / welche Frage soll beantwortet werden (kurz in einem Satz zusammengefasst)? Wenn anhand eines Fallbeispiels: mit welchen Eigenschaften, representativ für welche anderen Szenarien? Kontrollierte oder natürliche Umgebung (Labor vs. „im Feld“)? Was für Testbedingung(en), was sind die wichtigsten abhängigen Variablen? Within- vs. Between-Subject Design? Randomisierung? Was für Teilnehmer? Was für ein Prototyp bzw. was für Prototyp, was für Testunterlagen? Ca 1/2 Seite.
+
+Die Frage, die hier beantwortet werden soll, lautet:
+\emph{\glqq{}Wie wichtig sind die etablierten Qualitätskriterien für die Nützlichkeit der Daten?\grqq}
+
+Hierzu wird ein quantitativer Ansatz (Ranking der Datenportale,
+Metadaten und Datensätze) mit einem qualitativen Ansatz
+kombiniert, um zusätzlich möglicherweise unbeachtete
+Qualitätskriterien zu entdecken.
+
+Anhand eines Fallbeispiels sollen die quantitativen Beiträge von
+üblichen Qualitätskriterien auf die Nützlichkeit von Open Government
+Data betrachtet werden.
+Dieses Fallbeispiel, unter Betrachtung von Datensätzen über den Familienstand
+von Personen eines Landes, ist repräsentativ für Datensätze im
+Bereich von Bevölkerungsstatistiken.
+Die TeilnehmerInnen sind Data Scientists mit Erfahrung im Bereich
+Bevölkerungsstatistik.
+
+Die Studie wird in einem kontrollierten Umfeld durchgeführt.
+Es wird ein \emph{Within-Subject} Design gewählt, um mit einer
+geringen Zahl an StudienteilnehmerInnen auszukommen.
+
+Die wesentlichen abhängigen Variable in der Auswertung sind
+die Koeffizienten, die für etablierte Qualitätskriterien in die
+subjektive Nützlichkeit einfließen.
+
+\subsection{Hypothesen}
+
+% Liste aller Hypothesen, die bei der Auswertung der vorgeschlagenen, empirischen Studie überprüft werden sollen und können, um zum erwarteten Ergebnis zu führen. Stichwort-artig, keine ausformulierten Sätze. Für jede Hypothese eine Beschreibung wie folgt, wobei Sie unzutreffende Zeilen weglassen können.
+% Hypothese <Nummer>: 
+% <Textuelle Beschreibung, z.B: "Gamifizierung steigert das subjektive Wohlbefinden">
+% Unabhängige Variable(n): <Liste der laut Hypothese beeinflussenden Variablennamen>
+% Abhängige Variable(n): <Liste der laut Hypothese beeinflussten Variablennamen>
+% Split: <Variable(n), nach denen getrennt ausgewertet werden soll, z.B. separate Auswertungen für jede Altersgruppe>
+% Filter: <Filterkriterien, z.B. “Completion >= 3” für Auswertung nur auf Basis von vollständig ausgefüllter Fragebögen>
+
+\subsubsection{Hypothese 1: Etablierte Qualitätskriterien für Metadaten sind relevant für deren Nützlichkeit}
+
+\begin{itemize}
+    \item \textbf{Unabhängige Variablen:} Die Maßzahlen von
+    in der Literatur verwendeten Qualitätskriterien für Metadaten
+    \item \textbf{Abhängige Variablen:} Die durch das Ranking ausgedrückte
+    subjektive Nützlichkeit der Datensätze
+    \item \textbf{Filterkriterien:} Data Scientists, die die Daten
+    bereits ausführlich kennen, werden in der Auswertung ignoriert
+\end{itemize}
+
+\subsubsection{Hypothese 2: Etablierte Qualitätskriterien für Portale sind relevant für deren Nützlichkeit}
+
+\begin{itemize}
+    \item \textbf{Unabhängige Variablen:} Die Maßzahlen von
+    in der Literatur verwendeten Qualitätskriterien für Portale
+    \item \textbf{Abhängige Variablen:} Die durch das Ranking ausgedrückte
+    subjektive Nützlichkeit der Portale
+    \item \textbf{Filterkriterien:} Data Scientists, die die Portale
+    bereits ausführlich kennen, werden in der Auswertung ignoriert
+\end{itemize}
+
+\subsubsection{Hypothese 3: Etablierte Qualitätskriterien für Daten sind relevant für deren Nützlichkeit}
+
+\begin{itemize}
+    \item \textbf{Unabhängige Variablen:} Die Maßzahlen von
+    in der Literatur verwendeten Kriterien für Datenqualität
+    \item \textbf{Abhängige Variablen:} Die durch das Ranking ausgedrückte
+    subjektive Nützlichkeit der Datensätze
+    \item \textbf{Filterkriterien:} Data Scientists, die die Datensätze
+    bereits ausführlich kennen, werden in der Auswertung ignoriert
+\end{itemize}
+
+\subsection{Variablen}
+
+% Eine Beschreibung für jede in der Liste der Hypothesen genannte Variable. Stichwort-artig, d.h. keine ausformulierten Sätze. Umfang ca. 2 Seiten. Beschreibung jeder Variable wie folgt:
+% Variable: <Kurzer Name der Variable>
+% <Textuelle Beschreibung der Variable>
+% Rolle im Studiendesign: <unabhängige, abhängige, Moderator-, Mediator-, Kontroll-, oder Störvariable>
+% Art der Merkmalsausprägung: <diskret, stetig, dichotom oder polytom>
+% Skalenniveau: <Nominal-, Ordinal-, Intervall- oder Verhältnisskala>
+% Maß: <Wie sollen Daten für die Variable erhoben oder gemessen werden? bspw.: Beobachtung, Logging, Pre/Post-Test-Questionnaire, Frage aus einem standardisierten Fragebogen? Usw.>
+
+\subsubsection{Maßzahlen von Portal-Qualitätskriterien}
+
+\begin{itemize}
+    \item \textbf{Rolle:} Unabhängige Variable
+    \item \textbf{Merkmalsausprägung:} diskret oder stetig
+    \item \textbf{Skalenniveau:} Ordinal- oder (idealerweise) Intervallskala
+    \item \textbf{Maß:} Durch Berechnung wie in der Literatur angegeben
+\end{itemize}
+
+\subsubsection{Maßzahlen von Metadaten-Qualitätskriterien}
+
+\begin{itemize}
+    \item \textbf{Rolle:} Unabhängige Variable
+    \item \textbf{Merkmalsausprägung:} diskret oder stetig
+    \item \textbf{Skalenniveau:} Ordinal- oder (idealerweise) Intervallskala
+    \item \textbf{Maß:} Durch Berechnung wie in der Literatur angegeben
+\end{itemize}
+
+\subsubsection{Maßzahlen von Datensatz-Qualitätskriterien}
+
+\begin{itemize}
+    \item \textbf{Rolle:} Unabhängige Variable
+    \item \textbf{Merkmalsausprägung:} diskret oder stetig
+    \item \textbf{Skalenniveau:} Ordinal- oder (idealerweise) Intervallskala
+    \item \textbf{Maß:} Durch Berechnung wie in der Literatur angegeben
+\end{itemize}
+
+\subsubsection{Nützlichkeit von Portalen}
+
+\begin{itemize}
+    \item \textbf{Rolle:} Abhängige Variable
+    \item \textbf{Merkmalsausprägung:} diskret
+    \item \textbf{Skalenniveau:} Ordinalskala
+    \item \textbf{Maß:} Post-Test-Questionnaire
+\end{itemize}
+
+\subsubsection{Nützlichkeit von Metadaten}
+
+\begin{itemize}
+    \item \textbf{Rolle:} Abhängige Variable
+    \item \textbf{Merkmalsausprägung:} diskret
+    \item \textbf{Skalenniveau:} Ordinalskala
+    \item \textbf{Maß:} Post-Test-Questionnaire
+\end{itemize}
+
+\subsubsection{Nützlichkeit von Datensätzen}
+
+\begin{itemize}
+    \item \textbf{Rolle:} Abhängige Variable
+    \item \textbf{Merkmalsausprägung:} diskret
+    \item \textbf{Skalenniveau:} Ordinalskala
+    \item \textbf{Maß:} Post-Test-Questionnaire
+\end{itemize}
+
+\subsubsection{Erfahrung mit konkretem Portal}
+
+\begin{itemize}
+    \item \textbf{Rolle:} Störvariable
+    \item \textbf{Merkmalsausprägung:} diskret
+    \item \textbf{Skalenniveau:} Ordinalskala
+    \item \textbf{Maß:} Post-Test-Questionnaire
+\end{itemize}
+
+\subsubsection{Erfahrung mit konkretem Datensatz}
+
+\begin{itemize}
+    \item \textbf{Rolle:} Störvariable
+    \item \textbf{Merkmalsausprägung:} diskret
+    \item \textbf{Skalenniveau:} Ordinalskala
+    \item \textbf{Maß:} Post-Test-Questionnaire
+\end{itemize}
+
+% Bibliographie
+\printbibliography
+
+\end{document}
